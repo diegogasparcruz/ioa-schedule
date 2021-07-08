@@ -5,7 +5,7 @@ import theme from 'styles/theme';
 
 import { AppRouter } from 'pages/AppRoutes';
 
-import { Header } from 'components/shared/Header';
+import { Header } from 'components/shared/core/Header';
 
 export default function App() {
   return (
