@@ -3,10 +3,12 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'styles/global';
 import theme from 'styles/theme';
 
+import { AppRouter } from 'pages/AppRoutes';
+
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <h1>Hello World</h1>
+      <AppRouter />
       <GlobalStyle />
     </ThemeProvider>
   );
