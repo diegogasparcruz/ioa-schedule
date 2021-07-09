@@ -7,6 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     box-sizing: inherit;
+    outline: 0;
   }
 
   html {
@@ -57,5 +58,13 @@ export const GlobalStyle = createGlobalStyle`
   [disabled] {
     opacity: 0.6;
     cursor: not-allowed;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.colors.blue};
+    border-radius: 30px;
+  }
+  ::-webkit-scrollbar {
+    width: 0.25rem;
   }
 `;
