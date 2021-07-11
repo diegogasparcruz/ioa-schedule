@@ -2,7 +2,7 @@ import { Icon } from 'components/shared/core/Icon';
 import * as S from './ContactsTable.styles';
 
 interface ContactProps {
-  id: number;
+  id?: number;
   name: string;
   email: string;
   phone: string;

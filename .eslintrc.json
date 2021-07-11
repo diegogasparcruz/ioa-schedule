@@ -37,7 +37,8 @@
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-explicit-any": "error",
     "no-use-before-define": [0],
-    "@typescript-eslint/no-use-before-define": [1]
+    "@typescript-eslint/no-use-before-define": [1],
+    "no-param-reassign": ["error", { "props": false }]
   },
   "settings": {
     "import/resolver": {
