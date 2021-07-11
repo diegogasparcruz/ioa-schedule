@@ -1,0 +1,16 @@
+{
+  "contacts": [
+    {
+      "id": 1,
+      "name": "Hefanys Cavalcante",
+      "email": "hefanys@all.com",
+      "phone": "(88) 98888-8888"
+    },
+    {
+      "id": 2,
+      "name": "Diego Gaspar",
+      "email": "diego@all.com",
+      "phone": "(88) 98888-8888"
+    }
+  ]
+}
