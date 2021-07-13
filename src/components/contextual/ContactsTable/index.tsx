@@ -1,4 +1,7 @@
 import { Icon } from 'components/shared/core/Icon';
+import { useAppDispatch } from 'hooks/store';
+import { api } from 'services/api';
+import { deleteContact } from 'store/contactSlice';
 import * as S from './ContactsTable.styles';
 
 interface ContactProps {
@@ -10,9 +13,18 @@ interface ContactProps {
 
 interface ContactsTableProps {
   contacts: ContactProps[];
+  isLoading: boolean;
 }
 
-export function ContactsTable({ contacts }: ContactsTableProps) {
+export function ContactsTable({ contacts, isLoading }: ContactsTableProps) {
+  const dispatch = useAppDispatch();
+
+  async function handleDelete(id: number): Promise<void> {
+    await api.delete(`/contacts/${id}`);
+
+    dispatch(deleteContact(id));
+  }
+
   return (
     <S.Container>
       <table>
@@ -34,18 +46,31 @@ export function ContactsTable({ contacts }: ContactsTableProps) {
                 <button className="table__actions--edit" type="button">
                   <Icon name="edit" />
                 </button>
-                <button className="table__actions--delete" type="button">
+                <button
+                  onClick={() => handleDelete(contact.id as number)}
+                  className="table__actions--delete"
+                  type="button"
+                >
                   <Icon name="delete" />
                 </button>
               </td>
             </tr>
           ))}
-          {contacts.length === 0 && (
+
+          {isLoading ? (
             <tr>
               <td colSpan={4} style={{ textAlign: 'center' }}>
-                Nenhum contato encontrado.
+                Carregando...
               </td>
             </tr>
+          ) : (
+            contacts.length === 0 && (
+              <tr>
+                <td colSpan={4} style={{ textAlign: 'center' }}>
+                  Nenhum contato encontrado.
+                </td>
+              </tr>
+            )
           )}
         </tbody>
       </table>

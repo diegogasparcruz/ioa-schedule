@@ -1,6 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { api } from 'services/api';
-import { AppDispatch, AppThunk } from './globalStore';
 
 interface Contact {
   id?: number;
@@ -37,23 +35,15 @@ const contactSlice = createSlice({
     addContact(state, action: PayloadAction<Contact>) {
       state.contacts.unshift(action.payload);
     },
+    deleteContact(state, action: PayloadAction<number>) {
+      state.contacts = state.contacts.filter(
+        (contact) => contact.id !== action.payload
+      );
+    },
   },
 });
 
-const { setContacts, setError, setLoading } = contactSlice.actions;
+export const { setContacts, setError, setLoading, deleteContact } =
+  contactSlice.actions;
 
 export default contactSlice.reducer;
-
-export const fetchContacts = (): AppThunk => async (dispatch: AppDispatch) => {
-  try {
-    dispatch(setLoading(true));
-
-    const response = await api.get('/contacts');
-
-    dispatch(setContacts(response.data));
-  } catch (error) {
-    dispatch(setError('Ocorreu algum problema!'));
-  } finally {
-    dispatch(setLoading(false));
-  }
-};
